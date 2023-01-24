@@ -34,11 +34,18 @@ def sync_make_request():
 
 @time_function
 def async_make_request():
-    Thread(target=make_request)
-    Thread(target=make_request)
-    Thread(target=make_request)
-    Thread(target=make_request)
-    Thread(target=make_request)
+    # Thread(target=make_request)
+    # Thread(target=make_request)
+    # Thread(target=make_request)
+    # Thread(target=make_request)
+    # Thread(target=make_request)
+    threads = list()
+    for index in range(5):
+        x = Thread(target=make_request)
+        threads.append(x)
+        x.start()
+    for index, thread in enumerate(threads):
+        thread.join()
 
 
 @time_function
@@ -49,11 +56,18 @@ def sync_cropp_image():
 
 @time_function
 def async_cropp_image():
-    Thread(target=cropp_image)
-    Thread(target=cropp_image)
-    Thread(target=cropp_image)
-    Thread(target=cropp_image)
-    Thread(target=cropp_image)
+    # Thread(target=cropp_image)
+    # Thread(target=cropp_image)
+    # Thread(target=cropp_image)
+    # Thread(target=cropp_image)
+    # Thread(target=cropp_image)
+    threads = list()
+    for index in range(5):
+        x = Thread(target=make_request)
+        threads.append(x)
+        x.start()
+    for index, thread in enumerate(threads):
+        thread.join()
 
 
 if __name__ == '__main__':
@@ -61,4 +75,4 @@ if __name__ == '__main__':
     async_make_request()
     sync_cropp_image()
     async_cropp_image()
-    # print(time_function.__name__)
+    #синхронна функція із обробкою зображення виконується швидше, а у виконанні запитів навпаки
